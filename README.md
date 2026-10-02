@@ -8,9 +8,10 @@
 flowchart TD
     main["main.py"] --> gui["gui.py<br/>окно Tkinter"]
     main --> notes["notifications.py<br/>проверка раз в секунду"]
-    main --> database["database.py<br/>ReminderDatabase"]
-    gui -->|"добавить, готово, отменить, удалить"| database
-    notes -->|"срок наступил или просрочка"| database
+    gui --> leftAction["добавить, готово,<br/>отменить, удалить"]
+    notes --> rightAction["срок наступил<br/>или просрочка"]
+    leftAction --> database["database.py<br/>ReminderDatabase"]
+    rightAction --> database
     database --> db[("reminders.db")]
     notes --> system["системное уведомление<br/>plyer / notify-send"]
     notes --> popup["запасное окно<br/>поверх остальных, 30 секунд"]
